@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ShowProfile;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController as FrontUserController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
@@ -37,6 +38,8 @@ Route::get('/profile/{id}', ShowProfile::class);
 
 Route::resource('posts', PostController::class);
 
+Route::resource('students', StudentController::class)->only(['index', 'show']);;
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -46,5 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
