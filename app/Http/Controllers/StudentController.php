@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -11,7 +13,13 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        // Fetch all students' data with their user relationships
+        $students = Student::with('user')->paginate(10); // Using pagination
+
+        // Pass the data to the Vue component via Inertia
+        return Inertia::render('Students/Index', [
+            'students' => $students,
+        ]);
     }
 
     /**
@@ -30,12 +38,15 @@ class StudentController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        // Fetch specific student data
+        $student = Student::with('user')->findOrFail($id);
+
+        // Pass the data to the Vue component via Inertia
+        return Inertia::render('Students/Show', [
+            'student' => $student,
+        ]);
     }
 
     /**
