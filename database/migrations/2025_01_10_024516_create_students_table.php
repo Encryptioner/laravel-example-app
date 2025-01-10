@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->integer('age');
+            $table->string('class'); // Example: "10th Grade"
+            $table->text('address')->nullable();
+            $table->timestamps(); // created_at and updated_at
         });
     }
 
