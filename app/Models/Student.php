@@ -19,6 +19,7 @@ class Student extends Model
         'age',
         'class',
         'address',
+        'user_id', // this field is added later to fillable
     ];
 
     // Optionally specify the attributes that should be hidden for arrays
@@ -31,4 +32,10 @@ class Student extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    // Define the relationship with the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

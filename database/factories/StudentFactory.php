@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class StudentFactory extends Factory
             'age' => $this->faker->numberBetween(10, 20),
             'class' => $this->faker->randomElement(['10th Grade', '11th Grade', '12th Grade']),
             'address' => $this->faker->address(),
+            'user_id' => User::factory(),
         ];
     }
 }
