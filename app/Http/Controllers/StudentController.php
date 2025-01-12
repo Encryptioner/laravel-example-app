@@ -103,8 +103,7 @@ class StudentController extends Controller
         // Update the student record
         $student->update($validated);
 
-        return response()->json([
-            'message' => 'Student updated successfully.',
+        return Inertia::render('Students/Show', [
             'student' => $student,
         ]);
     }

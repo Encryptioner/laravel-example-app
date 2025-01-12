@@ -6,12 +6,15 @@
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Add student's basic information
+                {{ student ? 'Edit' : 'Add' }} student's basic information
             </p>
         </header>
         
         <form
-            @submit.prevent="form.post(route('students.store'))"
+            @submit.prevent="student 
+                ? form.patch(route('students.update', {id: student.id}))
+                : form.post(route('students.store'))
+                "
             class="mt-6 space-y-6"
         >
             <div>
@@ -103,17 +106,24 @@ import {
     IStudent
 } from '@/types/index';
 
-defineProps<{
+const props = defineProps<{
     student?: IStudent;
 }>();
 
+const {
+    name = '',
+    email = '',
+    age = '',
+    class: cls = '',
+    address = ''
+} = props.student || {};
 
 const form = useForm({
-    name: '',
-    email: '',
-    age: '',
-    class: '',
-    address: '',
+    name,
+    email,
+    age: age.toString(),
+    class: cls,
+    address,
 });
 
 </script>

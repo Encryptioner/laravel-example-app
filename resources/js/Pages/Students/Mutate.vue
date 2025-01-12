@@ -19,6 +19,7 @@
                 >
                     <StudentForm
                         class="max-w-xl"
+                        :student="student"
                     />
                 </div>
             </div>
@@ -33,7 +34,7 @@ import StudentForm from './Partials/StudentForm.vue';
 import { Head } from '@inertiajs/vue3';
 import {
     IStudent
-} from '../../types/index';
+} from '@/types/index';
 
 defineProps<{
     student: IStudent;
