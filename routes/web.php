@@ -38,7 +38,9 @@ Route::get('/profile/{id}', ShowProfile::class);
 
 Route::resource('posts', PostController::class);
 
-Route::resource('students', StudentController::class)->only(['index', 'show']);;
+Route::middleware('auth')->group(function () {
+    Route::resource('students', StudentController::class)->only(['index', 'show']);;
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
