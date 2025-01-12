@@ -14,7 +14,7 @@ class StudentController extends Controller
     public function index()
     {
         // Fetch all students data with their user relationships
-        $students = Student::with('user')->paginate(10); // Using pagination
+        $students = Student::with('user')->orderBy('name', 'asc')->paginate(10); // Using pagination
 
         // Pass the data to the Vue component via Inertia
         return Inertia::render('Students/Index', [

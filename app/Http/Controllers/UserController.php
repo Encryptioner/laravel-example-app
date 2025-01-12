@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         // Fetch all users data with pagination
-        $users = User::take(10)->get();
+        $users = User::take(10)->orderByDesc('name')->get();
         return view('users.index', compact('users'));
     }
 

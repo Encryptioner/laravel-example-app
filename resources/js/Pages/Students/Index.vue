@@ -22,7 +22,7 @@
           </thead>
           <tbody>
             <tr v-for="(student, index) in students.data" :key="student.id">
-              <td class="border border-gray-300 px-4 py-2">{{ index + 1 }}</td>
+              <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
               <td class="border border-gray-300 px-4 py-2">{{ student.name }}</td>
               <td class="border border-gray-300 px-4 py-2">{{ student.email }}</td>
               <td class="border border-gray-300 px-4 py-2">{{ student.class }}</td>
