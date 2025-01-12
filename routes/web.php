@@ -29,14 +29,16 @@ Route::get('/welcome', function () {
     return view('welcome', compact('name', 'title', 'version'));
 });
 
-Route::get('/users', [FrontUserController::class, 'index'])->name('users.index');
-Route::get('/users/{id}', [FrontUserController::class, 'show'])->name('users.show');
-
 Route::get('/admin/users', [AdminUserController::class, 'index']);
 
 Route::get('/profile/{id}', ShowProfile::class);
 
 Route::resource('posts', PostController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [FrontUserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [FrontUserController::class, 'show'])->name('users.show');
+});
 
 Route::middleware('auth')->group(function () {
     Route::resource('students', StudentController::class)->only(['index', 'show']);;
