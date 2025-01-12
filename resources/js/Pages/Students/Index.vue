@@ -10,6 +10,14 @@
             </h2>
         </template>
 
+        <div class="flex justify-end">
+          <PrimaryButton
+              class="ml-auto my-4 mr-4"
+          >
+              <Link href="/students/create">Add Student</Link>
+          </PrimaryButton>
+        </div>
+
         <table class="table-auto w-full border-collapse border border-gray-200">
           <thead>
             <tr>
@@ -49,6 +57,7 @@
 import { Link } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Pagination from '../../Components/Pagination.vue';
 import {
   ITableResult,
