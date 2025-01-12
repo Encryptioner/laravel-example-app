@@ -57,11 +57,11 @@ import { Link } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import Pagination from '../../Components/Pagination.vue';
+import Pagination from '@/Components/Pagination.vue';
 import {
   ITableResult,
   IStudent,
-} from '../../types/index';
+} from '@/types/index';
 
 
 defineProps<{
