@@ -61,7 +61,7 @@ import Pagination from '@/Components/Pagination.vue';
 import {
   ITableResult,
   IStudent,
-} from '@/types/index';
+} from '@/types/custom';
 
 
 defineProps<{

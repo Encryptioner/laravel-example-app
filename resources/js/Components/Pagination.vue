@@ -18,7 +18,7 @@
 import { Link } from "@inertiajs/vue3";
 import {
   ILink,
-} from '../types/index';
+} from '@/types/custom';
 
 defineProps<{
   links: ILink[];

@@ -104,7 +104,7 @@ import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import {
     IStudent
-} from '@/types/index';
+} from '@/types/custom';
 
 const props = defineProps<{
     student?: IStudent;
