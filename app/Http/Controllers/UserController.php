@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 
 
 
@@ -21,16 +21,18 @@ class UserController extends Controller
     }
     
     public function index()
-        {
-            $users = $this->users;
-            return view('users.index', compact('users'));
-        }
+    {
+        // Fetch all users data with pagination
+        $users = User::take(10)->get();
+        return view('users.index', compact('users'));
+    }
 
-        public function show($id)
-        {
+    public function show(string $id)
+    {   
 
-            $user = collect($this->users)->firstWhere('id', $id);
+        // Fetch specific user data
+        $user = User::findOrFail($id)->toArray();
 
-            return view('users.show', compact('user'));
-        }
+        return view('users.show', compact('user'));
+    }
 }
