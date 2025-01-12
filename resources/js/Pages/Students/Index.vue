@@ -35,6 +35,12 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Pagination -->
+        <div class="mt-10 mx-auto max-w-screen-sm px-4">
+          <Pagination :links="result.links" />
+        </div>
+
     </AuthenticatedLayout>
 </template>
 
@@ -43,11 +49,11 @@
 import { Link } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import Pagination from '../../Components/Pagination.vue';
 import {
   ITableResult,
   IStudent,
 } from '../../types/index';
-
 
 
 defineProps<{
