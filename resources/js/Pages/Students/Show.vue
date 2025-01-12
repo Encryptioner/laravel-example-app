@@ -1,6 +1,15 @@
 <template>
-  <div>
-    <h1 class="text-2xl font-bold mb-4">Student Details</h1>
+  <Head title="Students List" />
+
+  <AuthenticatedLayout>
+    <template #header>
+        <h2
+            class="text-xl font-semibold leading-tight text-gray-800"
+        >
+          Student Details
+        </h2>
+    </template>
+
     <div class="border p-4 rounded">
       <p><strong>Name:</strong> {{ student.name }}</p>
       <p><strong>Email:</strong> {{ student.email }}</p>
@@ -12,12 +21,14 @@
     <Link href="/students" class="mt-4 inline-block text-blue-500 hover:underline">
       Back to Students List
     </Link>
-  </div>
+  </AuthenticatedLayout>
 </template>
 
 <script setup lang="ts">
 
 import { Link } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head } from '@inertiajs/vue3';
 
 defineProps<{
   student: any;
