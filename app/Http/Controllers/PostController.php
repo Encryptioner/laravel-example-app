@@ -11,7 +11,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return "This is a plain text example.";
+        return 'This is a plain text example.';
     }
 
     /**

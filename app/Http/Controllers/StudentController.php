@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class StudentController extends Controller
@@ -89,12 +89,12 @@ class StudentController extends Controller
     {
         // Find the student
         $student = Student::where('id', $id)
-        ->firstOrFail();
+            ->firstOrFail();
 
         // Validate the input data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email,' . $student->id,
+            'email' => 'required|email|unique:students,email,'.$student->id,
             'age' => 'required|integer|min:1',
             'class' => 'required|string|max:50',
             'address' => 'nullable|string|max:500',

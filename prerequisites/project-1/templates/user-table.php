@@ -4,13 +4,13 @@
 $search = $_GET['search'] ?? ''; // Search query
 $orderByField = $_GET['order_by'] ?? 'id'; // Order by field
 $orderDirection = $_GET['direction'] ?? 'ASC'; // Order direction (ASC/DESC)
-$limit = (int)($_GET['limit'] ?? 10); // Records per page
-$page = (int)($_GET['page'] ?? 1); // Current page
+$limit = (int) ($_GET['limit'] ?? 10); // Records per page
+$page = (int) ($_GET['page'] ?? 1); // Current page
 $page = max($page, 1); // Ensure page is at least 1
 $offset = ($page - 1) * $limit; // Calculate offset
 
 // Filter query
-$filter = !empty($search) ? "WHERE name LIKE '%" . $conn->real_escape_string($search) . "%'" : "";
+$filter = ! empty($search) ? "WHERE name LIKE '%".$conn->real_escape_string($search)."%'" : '';
 
 // Validate order direction
 $orderDirection = strtoupper($orderDirection) === 'DESC' ? 'DESC' : 'ASC';
@@ -61,33 +61,33 @@ $result = $conn->query($sql);
         <th>ID</th>
         <th>Name</th>
     </tr>
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
+    <?php if ($result->num_rows > 0) { ?>
+        <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
                 <td><?= htmlspecialchars($row['id']) ?></td>
                 <td><?= htmlspecialchars($row['name']) ?></td>
             </tr>
-        <?php endwhile; ?>
-    <?php else: ?>
+        <?php } ?>
+    <?php } else { ?>
         <tr>
             <td colspan="2">No matching records found</td>
         </tr>
-    <?php endif; ?>
+    <?php } ?>
 </table>
 
 <!-- Pagination Links -->
 <div class="pagination">
-    <?php if ($page > 1): ?>
+    <?php if ($page > 1) { ?>
         <a href="?<?= http_build_query(array_merge($_GET, ['page' => $page - 1])) ?>">Previous</a>
-    <?php endif; ?>
-    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+    <?php } ?>
+    <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
         <a href="?<?= http_build_query(array_merge($_GET, ['page' => $i])) ?>" class="<?= $i === $page ? 'active' : '' ?>">
             <?= $i ?>
         </a>
-    <?php endfor; ?>
-    <?php if ($page < $totalPages): ?>
+    <?php } ?>
+    <?php if ($page < $totalPages) { ?>
         <a href="?<?= http_build_query(array_merge($_GET, ['page' => $page + 1])) ?>">Next</a>
-    <?php endif; ?>
+    <?php } ?>
 </div>
 
 
