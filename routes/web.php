@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('students', StudentController::class)->only(['index', 'show', 'create']);;
+    Route::resource('students', StudentController::class)->except(['destroy']);;
 });
 
 Route::get('/dashboard', function () {

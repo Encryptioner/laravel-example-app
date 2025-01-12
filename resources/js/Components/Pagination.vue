@@ -2,6 +2,7 @@
   <div class="flex justify-between">
     <div v-for="link in links" :key="link.url">
       <Link
+        v-if="link.url"
         :href="link.url"
         :class="[
           link.active ? 'font-bold text-blue-500' : 'text-gray-500',
@@ -18,7 +19,6 @@ import { Link } from "@inertiajs/vue3";
 import {
   ILink,
 } from '../types/index';
-
 
 defineProps<{
   links: ILink[];

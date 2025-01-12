@@ -14,7 +14,7 @@ class StudentController extends Controller
     public function index()
     {
         // Fetch all students data with their user relationships
-        $result = Student::with('user')->orderBy('name', 'asc')->paginate(10); // Using pagination
+        $result = Student::with('user')->orderBy('id', 'asc')->paginate(10); // Using pagination
 
         // Pass the data to the Vue component via Inertia
         return Inertia::render('Students/Index', [
@@ -35,7 +35,26 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the input data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email',
+            'age' => 'required|integer|min:1',
+            'class' => 'required|string|max:50',
+            'address' => 'nullable|string|max:500',
+        ]);
+
+        // Create the student record with the authenticated user's ID
+        Student::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'age' => $validated['age'],
+            'class' => $validated['class'],
+            'address' => $validated['address'],
+            'user_id' => auth()->id(), // Get the authenticated user's ID
+        ]);
+
+        return redirect()->route('students.index');
     }
 
     public function show(string $id)
@@ -62,7 +81,26 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the student
+        $student = Student::where('id', $id)
+        ->firstOrFail();
+
+        // Validate the input data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email,' . $student->id,
+            'age' => 'required|integer|min:1',
+            'class' => 'required|string|max:50',
+            'address' => 'nullable|string|max:500',
+        ]);
+
+        // Update the student record
+        $student->update($validated);
+
+        return response()->json([
+            'message' => 'Student updated successfully.',
+            'student' => $student,
+        ]);
     }
 
     /**

@@ -11,7 +11,7 @@
         </header>
         
         <form
-            @submit.prevent="form.patch(route('profile.update'))"
+            @submit.prevent="form.post(route('students.store'))"
             class="mt-6 space-y-6"
         >
             <div>
@@ -54,26 +54,40 @@
                     required
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2" :message="form.errors.age" />
+            </div>
+
+            <div>
+                <InputLabel for="class" value="Class" />
+
+                <TextInput
+                    id="class"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.class"
+                    required
+                />
+
+                <InputError class="mt-2" :message="form.errors.class" />
+            </div>
+
+            <div>
+                <InputLabel for="address" value="Address" />
+
+                <TextInput
+                    id="address"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.address"
+                    required
+                />
+
+                <InputError class="mt-2" :message="form.errors.address" />
             </div>
 
 
             <div class="flex items-center gap-4">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
-
-                <Transition
-                    enter-active-class="transition ease-in-out"
-                    enter-from-class="opacity-0"
-                    leave-active-class="transition ease-in-out"
-                    leave-to-class="opacity-0"
-                >
-                    <p
-                        v-if="form.recentlySuccessful"
-                        class="text-sm text-gray-600"
-                    >
-                        Saved.
-                    </p>
-                </Transition>
             </div>
         </form>
     </section>
@@ -95,9 +109,9 @@ defineProps<{
 const form = useForm({
     name: '',
     email: '',
-    age: '6',
-    class: 'Class 1',
-    address: 'Kushtia',
+    age: '',
+    class: '',
+    address: '',
 });
 
 </script>
