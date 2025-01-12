@@ -21,7 +21,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(student, index) in students.data" :key="student.id">
+            <tr 
+            v-for="(student, index) in result.data" 
+            :key="student.id"
+            >
               <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
               <td class="border border-gray-300 px-4 py-2">{{ student.name }}</td>
               <td class="border border-gray-300 px-4 py-2">{{ student.email }}</td>
@@ -40,9 +43,15 @@
 import { Link } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import {
+  ITableResult,
+  IStudent,
+} from '../../types/index';
+
+
 
 defineProps<{
-  students: any;
+  result: ITableResult<IStudent>;
 }>();
 
 </script>

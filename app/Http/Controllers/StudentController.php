@@ -14,11 +14,11 @@ class StudentController extends Controller
     public function index()
     {
         // Fetch all students data with their user relationships
-        $students = Student::with('user')->orderBy('name', 'asc')->paginate(10); // Using pagination
+        $result = Student::with('user')->orderBy('name', 'asc')->paginate(10); // Using pagination
 
         // Pass the data to the Vue component via Inertia
         return Inertia::render('Students/Index', [
-            'students' => $students,
+            'result' => $result,
         ]);
     }
 
