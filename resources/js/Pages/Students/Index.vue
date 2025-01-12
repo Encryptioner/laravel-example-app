@@ -3,20 +3,19 @@
 
     <AuthenticatedLayout>
         <template #header>
+          <div class="flex justify-end items-center">
             <h2
                 class="text-xl font-semibold leading-tight text-gray-800"
             >
-              Students List
+              Student List
             </h2>
+            <PrimaryButton
+                  class="ml-auto my-4 mr-4"
+              >
+                  <Link href="/students/create">Add Student</Link>
+              </PrimaryButton>
+          </div>    
         </template>
-
-        <div class="flex justify-end">
-          <PrimaryButton
-              class="ml-auto my-4 mr-4"
-          >
-              <Link href="/students/create">Add Student</Link>
-          </PrimaryButton>
-        </div>
 
         <table class="table-auto w-full border-collapse border border-gray-200">
           <thead>

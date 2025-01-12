@@ -31,5 +31,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import StudentForm from './Partials/StudentForm.vue';
 import { Head } from '@inertiajs/vue3';
+import {
+    IStudent
+} from '../../types/index';
+
+defineProps<{
+    student: IStudent;
+}>();
 
 </script>

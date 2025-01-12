@@ -73,7 +73,13 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Fetch specific student data
+        $student = Student::findOrFail($id);
+
+        // Pass the data to the Vue component via Inertia
+        return Inertia::render('Students/Mutate', [
+            'student' => $student,
+        ]);
     }
 
     /**
