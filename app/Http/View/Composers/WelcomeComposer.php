@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\View\Composers;
+
 use Illuminate\View\View;
 
 class WelcomeComposer
@@ -17,5 +18,4 @@ class WelcomeComposer
     {
         $view->with('pageSubTitle', 'Welcome to Laravel Example App');
     }
-    
 }

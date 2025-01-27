@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -15,22 +13,25 @@ class UserController extends Controller
     public function __construct()
     {
         $this->users = [
-            (object) ['id' => 1, 'name' => 'Jack', 'email'=> 'jack@email.com'],
-            (object) ['id' => 2, 'name' => 'Harry', 'email'=> 'harry@gmail.com'],
+            (object) ['id' => 1, 'name' => 'Jack', 'email' => 'jack@email.com'],
+            (object) ['id' => 2, 'name' => 'Harry', 'email' => 'harry@gmail.com'],
         ];
     }
-    
+
     public function index()
-        {
-            $users = $this->users;
-            return view('users.index', compact('users'));
-        }
+    {
+        // Fetch all users data with pagination
+        $users = User::take(10)->orderByDesc('name')->get();
 
-        public function show($id)
-        {
+        return view('users.index', compact('users'));
+    }
 
-            $user = collect($this->users)->firstWhere('id', $id);
+    public function show(string $id)
+    {
 
-            return view('users.show', compact('user'));
-        }
+        // Fetch specific user data
+        $user = User::findOrFail($id)->toArray();
+
+        return view('users.show', compact('user'));
+    }
 }

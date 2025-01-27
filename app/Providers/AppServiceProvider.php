@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
 use App\Http\View\Composers\WelcomeComposer;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,10 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Vite::prefetch(concurrency: 3);
+
         View::share('appName', 'Laravel Example App');
 
         View::composer('partials.navbar', WelcomeComposer::class);
-        
+
         view()->composer('partials.navbar', function ($view) {
             $view->with('pageTitle', 'Welcome');
         });
